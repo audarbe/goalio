@@ -8,5 +8,5 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 const db = mongoose.connection;
 db.on('connected', function () {
-    console.log(`Mongoose connected: at ${db.host} port ${db.port}`);
+    console.log(`Mongoose connected! ${db.host} port ${db.port}`);
   });
