@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Goalio</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>
-            Goalio - Goal/Habit Tracking
-        </h1>
-        <nav>
-            <a href="/">Home</a>
-        </nav>
+      <h1>
+        Goalio - Goal/Habit Tracking
+      </h1>
+      <nav>
+        <a href="/">Home</a>
+        <% if (user) { %>
+        <a href="/logout">Log Out</a>
+        <% } else { %>
+        <a href="/auth/google">Login</a>
+        <% } %>
+      </nav>
     </header>
-    <hr>
-    <main>
+    <hr />
+    <main></main>
+  </body>
+</html>
