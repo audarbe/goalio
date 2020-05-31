@@ -1,14 +1,14 @@
 <%- include('partials/header') %>
 <section>
+  <% if (user) { %>
+  <h1>user page</h1>
+  <a href="/goals">View Goals</a>
+  <a href="/goals/new">Add Goal</a>
+  <% } else { %>
   <h1>homepage</h1>
   <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab
-    distinctio quaerat, harum pariatur obcaecati quo molestias reiciendis
-    praesentium quam atque sunt libero error cum eos excepturi qui rem
-    accusamus?Vero quasi molestias facilis neque soluta, consequatur voluptates
-    est culpa ab deserunt recusandae autem, quidem animi iste odit eligendi
-    tenetur! Possimus repellat veritatis maxime perspiciatis sequi, cupiditate
-    laudantium illo! Voluptatem.
+    Logged out
   </p>
+  <% } %>
 </section>
 <%- include('partials/footer') %>
