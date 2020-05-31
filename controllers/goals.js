@@ -8,7 +8,6 @@ module.exports = {
 };
 
 function index(req, res) {
-  console.log(req.user)
   Goal.find({ userId: req.user._id }, function (err, goals) {
     res.render('goals/index', {
       goals
@@ -23,15 +22,20 @@ function newGoal(req, res) {
 
 function create(req, res) {
   const goal = new Goal(req.body);
-  goal.userId = req.user._id;
-  // goal.categories.concat(req.body.category);
-  goal.save(function (err) {
+  req.user.goals.push(goal)
+  req.user.save(function (err) {
     if (err) {
-      console.log(err)
-      return res.redirect('/goals/new');
+      console.log(err);
     } else {
-      res.redirect('/goals');
-    }
+      goal.save(function (err) {
+        if (err) {
+          console.log(err);
+          return res.redirect('/goals/new');
+        } else {
+          res.redirect('/goals');
+        }
+      });
+    };
   });
 }
 
