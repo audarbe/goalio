@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+<section>
+    <h1><%= goal.goalName %></h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>Created On</td>
+                <td>
+                    <%= goal.createdAt.toDateString() %>
+                    <%= goal.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>Last Updated</td>
+                <td>
+                    <%= goal.updatedAt.toDateString() %>
+                    <%= goal.updatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>Progress</td>
+                <td><%= goal.progress %></td>
+            </tr>
+            <tr>
+                <td>Priority</td>
+                <td><%= goal.priority %></td>
+            </tr>
+            <tr>
+                <td>Difficulty#</td>
+                <td><%= goal.difficulty %></td>
+            </tr>
+            <tr>
+                <td>Days to complete</td>
+                <td><%= goal.daysToComplete %></td>
+            </tr>
+            <tr>
+                <td>Categories</td>
+                <td>
+                    <% goal.categories.forEach(function(c) { %>
+                    <%= c %><br />
+                    <% }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>milestones</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="/goals/<%= goal._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+    <form action="/goals/<%= goal._id %>/edit" method="GET">
+        <button type="submit">Edit</button>
+    </form>
+</section>
+<%- include('../partials/footer') %>

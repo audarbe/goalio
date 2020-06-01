@@ -5,7 +5,10 @@ var goalsCtrl = require('../controllers/goals');
 /* GET users listing. */
 router.get('/', goalsCtrl.index);
 router.get('/new', goalsCtrl.new);
+router.get('/:id', goalsCtrl.show);
 router.post('/', goalsCtrl.create)
 router.delete('/:id', goalsCtrl.delete);
+router.get('/:id/edit', goalsCtrl.edit)
+router.put('/:id', goalsCtrl.update)
 
 module.exports = router;

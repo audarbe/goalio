@@ -1,23 +1,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const categorySchema = new Schema({
-  category: {
-    type: Array,
-    // enum: [
-    //   'Educational',
-    //   'Health',
-    //   'Relationship',
-    //   'Personal',
-    //   'Career',
-    //   'Financial',
-    //   'Spiritual',
-    //   'Psychological',
-    //   'External',
-    //   'Experiential',
-    // ],
-  },
-});
+// const categorySchema = new Schema({
+//   category: {
+//     type: Schema.Types.Mixed,
+//     // enum: [
+//     //   'Educational',
+//     //   'Health',
+//     //   'Relationship',
+//     //   'Personal',
+//     //   'Career',
+//     //   'Financial',
+//     //   'Spiritual',
+//     //   'Psychological',
+//     //   'External',
+//     //   'Experiential',
+//     // ],
+//   },
+// });
 
 const goalSchema = new Schema(
   {
@@ -41,7 +41,7 @@ const goalSchema = new Schema(
       default: 0
     },
     userId: String,
-    categories: [categorySchema],
+    categories: Array,
     milestones: [{ type: Schema.Types.ObjectId, ref: 'Milestone' }],
   },
   {

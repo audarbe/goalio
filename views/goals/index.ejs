@@ -10,7 +10,6 @@
         <th>Difficulty#</th>
         <th>Days to complete</th>
         <th>Categories</th>
-        <th>milestones</th>
       </tr>
     </thead>
     </thead>
@@ -22,12 +21,17 @@
         <td><%= g.priority %></td>
         <td><%= g.difficulty %></td>
         <td><%= g.daysToComplete %></td>
-        <td><%= g.progress %></td>
-        <td><%= g.categories %></td>
-        <td><%= g.milestones %></td>
+        <td>
+          <% g.categories.forEach(function(c) { %>
+          <%= c %><br />
+          <% }) %>
+        </td>
         <td>
           <form action="/goals/<%= g._id %>?_method=DELETE" method="POST">
-            <button type="submit">del</button>
+            <button type="submit">Delete</button>
+          </form>
+          <form action="/goals/<%= g._id %>" method="GET">
+            <button type="submit">Details</button>
           </form>
         </td>
       </tr>
