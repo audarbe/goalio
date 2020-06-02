@@ -1,24 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// const categorySchema = new Schema({
-//   category: {
-//     type: Schema.Types.Mixed,
-//     // enum: [
-//     //   'Educational',
-//     //   'Health',
-//     //   'Relationship',
-//     //   'Personal',
-//     //   'Career',
-//     //   'Financial',
-//     //   'Spiritual',
-//     //   'Psychological',
-//     //   'External',
-//     //   'Experiential',
-//     // ],
-//   },
-// });
-
 const goalSchema = new Schema(
   {
     goalName: String,
@@ -38,11 +20,13 @@ const goalSchema = new Schema(
     },
     progress: {
       type: Number,
-      default: 0
+      default: 0,
+      min: 0,
+      max: 100
     },
     userId: String,
-    categories: Array,
-    milestones: [{ type: Schema.Types.ObjectId, ref: 'Milestone' }],
+    categories: [{ type: Schema.Types.Mixed, ref: 'Category' }],
+    milestones: [{ type: Schema.Types.ObjectId, ref: 'Milestone' }]
   },
   {
     timestamps: true,

@@ -1,4 +1,5 @@
 var Goal = require("../models/goal");
+var Category = require("../models/category");
 
 module.exports = {
   index,
@@ -11,19 +12,30 @@ module.exports = {
 };
 
 function index(req, res) {
-  Goal.find({ userId: req.user._id }, function (err, goals) {
-    res.render("goals/index", {
-      goals,
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    Goal.find({ userId: req.user._id }, function (err, goals) {
+      res.render("goals/index", {
+        goals,
+      });
     });
-  });
+  };
 }
 
 function newGoal(req, res) {
-  res.render("goals/new");
+  let category = Category.schema.path('category').enumValues;
+  if (!req.user) {
+    res.redirect("../index");
+  } else {
+    res.render("goals/new", {
+      category
+    });
+  };
 }
 
 function create(req, res) {
-  const goal = new Goal(req.body);
+const goal = new Goal(req.body);
   //user
   req.user.goals.push(goal);
   goal.userId = req.user._id;
@@ -35,7 +47,7 @@ function create(req, res) {
       //goal
       goal.save(function (err) {
         if (err) {
-          console.log(err, "goal.save");
+          console.log(err, "error goal.save");
           return res.redirect("/goals/new");
         } else {
           res.redirect("/goals");
@@ -73,12 +85,14 @@ function show(req, res) {
 }
 
 function edit(req, res) {
+  let category = Category.schema.path('category').enumValues;
   Goal.findById(req.params.id, function (err, goal) {
     if (goal.userId !== req.user._id.toString()) {
       res.redirect("/goals");
     } else {
       res.render("goals/edit", {
         goal,
+        category
       });
     }
   });

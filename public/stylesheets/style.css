@@ -6,3 +6,12 @@ body {
 a {
   color: #00b7ff;
 }
+
+table { 
+  border-spacing: 20px;
+}
+
+tr {
+  padding: 20px;
+  border-bottom: 1pt solid #dddddd;
+}
