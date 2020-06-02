@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 const milestoneSchema = new Schema(
     {
+      goalId: String,
       milestoneName: String,
       numberOfDays: Number,
       progress: {

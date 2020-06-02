@@ -1,4 +1,5 @@
 var Goal = require("../models/goal");
+var Milestones = require("../models/milestone");
 var Category = require("../models/category");
 
 module.exports = {
@@ -78,9 +79,12 @@ function deleteGoal(req, res) {
 
 function show(req, res) {
   Goal.findById(req.params.id, function (err, goal) {
-    res.render("goals/show", {
-      goal,
-    });
+    Milestones.find({ goalId: req.params.id }, function(err, milestones) {
+      res.render("goals/show", {
+        goal,
+        milestones
+      });
+    })
   });
 }
 
