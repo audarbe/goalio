@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<section id="milestone-details">
+    <h1><%= milestone.milestoneName %> Details</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>Last Updated</td>
+                <td>
+                    <%= milestone.updatedAt.toDateString() %>
+                    <%= milestone.updatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>Progress</td>
+                <td><%= milestone.progress %></td>
+            <tr>
+                <td>Days to complete</td>
+                <td><%= milestone.numberOfDays %></td>
+            </tr>
+            <tr>
+                <td>Habits</td>
+                <td>habits here</td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Milestone</button>
+    </form>
+    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/edit" method="GET">
+        <button type="submit">Edit Milestone Details</button>
+    </form>
+</section>
+<%- include('../partials/footer') %>

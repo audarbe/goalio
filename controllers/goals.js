@@ -1,6 +1,7 @@
 var Goal = require("../models/goal");
 var Milestones = require("../models/milestone");
 var Category = require("../models/category");
+var User = require("../models/user");
 
 module.exports = {
   index,
@@ -59,19 +60,26 @@ const goal = new Goal(req.body);
 }
 
 function deleteGoal(req, res) {
-  /* remove from users
-   console.log(req.user.goals, 'goals before')
-   const goalIdx = req.user.goals.indexOf(req.params.id)
-   req.user.goals.splice(goalIdx, 1);
-   or
-   req.user.goals.remove(req.params.id)
-   */
   Goal.findOneAndDelete({ _id: req.params.id, },
     function (err, goal) {
       if (err) {
         console.log(err, "delete error");
       } else {
-        res.redirect(`/goals`);
+        User.findById(req.user._id, function (err, user) {
+          if (err) {
+              console.log(err, 'error > user delete goal')
+          } else {
+              user.goals.remove(goal)
+              user.save(function (err) {
+                  if (err) {
+                      console.log(err, "error goal.save");
+                      res.redirect(`/goals/`);
+                  } else {
+                      res.redirect(`/goals/`);
+                  }
+              });
+          }
+      });
       }
     }
   );

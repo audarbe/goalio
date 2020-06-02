@@ -14,6 +14,10 @@ const milestoneSchema = new Schema(
         max: 100
       },
       habits: [{ type: Schema.Types.ObjectId, ref: 'Habit' }],
-  });
+  },
+    {
+      timestamps: true
+    }
+  );
 
 module.exports = mongoose.model('Milestone', milestoneSchema);

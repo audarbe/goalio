@@ -3,7 +3,10 @@ var Milestone = require("../models/milestone");
 
 module.exports = {
     create,
-    delete: removeMilestone
+    delete: removeMilestone,
+    show,
+    edit,
+    update
 }
 
 function create(req, res) {
@@ -54,8 +57,57 @@ function removeMilestone(req, res) {
                         });
                     }
                 })
-
             }
         }
     )
 }
+
+function edit(req, res) {
+    Milestone.findById(req.params.id, function (err, milestone) {
+        Goal.findById(milestone.goalId, function (err, goal) {
+            if (milestone.goalId !== goal._id.toString()) {
+                res.redirect("milestones/show");
+            } else {
+                res.render("./milestones/edit", {
+                milestone,
+                goal
+                });
+            }
+        });
+    });
+  }
+
+function show(req, res) {
+    Milestone.findById(req.params.id, function(err, milestone) {
+        Goal.findById(milestone.goalId, function (err, goal) {
+            res.render('./milestones/show', {
+                milestone,
+                goal
+            });
+        });
+    });
+};
+
+function update(req, res) {
+    Milestone.findOneAndUpdate(req.params.id,
+      {
+        $set: {
+          milestoneName: req.body.milestoneName,
+          numberOfDays: req.body.numberOfDays,
+        },
+      },
+      { new: true }
+    ).exec(function (err, milestone) {
+      if (err) {
+        console.log(err);
+        res.redirect('./milestones/edit');
+      } else {
+        Goal.findById(milestone.goalId, function (err, goal) {
+            res.render(`./milestones/show`, {
+                milestone,
+                goal
+            });
+        });
+      }
+    });
+  }

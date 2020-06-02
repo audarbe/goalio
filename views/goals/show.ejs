@@ -46,8 +46,8 @@
                 <td>
                 <% milestones.forEach(function(m) { %>
                     <%= m.milestoneName %>
-                    <form action="/goals/<%= goal._id %>/milestones/<%= m._id %>?_method=DELETE" method="POST">
-                        <button type="submit">Delete Milestone</button>
+                    <form action="/goals/<%= goal._id %>/milestones/<%= m._id %>?_method=DELETE" method="GET">
+                        <button type="submit">Milestone Details</button>
                     </form>
                     <br />
                 <% }) %>
