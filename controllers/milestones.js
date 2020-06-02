@@ -2,7 +2,8 @@ var Goal = require("../models/goal");
 var Milestone = require("../models/milestone");
 
 module.exports = {
-    create
+    create,
+    delete: removeMilestone
 }
 
 function create(req, res) {
@@ -13,15 +14,15 @@ function create(req, res) {
         if (err) {
             console.log(err, "error goal.save");
         } else {
-            Goal.findById(req.params.id, function(err, goal) {
+            Goal.findById(req.params.id, function (err, goal) {
                 if (err) {
                     console.log(err, 'error > milestone > goal.save')
                 } else {
                     goal.milestones.push(milestone);
                     goal.save(function (err) {
                         if (err) {
-                          console.log(err, "error goal.save");
-                          res.redirect(`/goals/${req.params.id}`);
+                            console.log(err, "error goal.save");
+                            res.redirect(`/goals/${req.params.id}`);
                         } else {
                             res.redirect(`/goals/${req.params.id}`);
                         }
@@ -32,5 +33,29 @@ function create(req, res) {
     });
 }
 
+function removeMilestone(req, res) {
+    Milestone.findOneAndDelete({ _id: req.params.id },
+        function (err, milestone) {
+            if (err) {
+                console.log(err, "delete milestone error");
+            } else {
+                Goal.findById(milestone.goalId, function (err, goal) {
+                    if (err) {
+                        console.log(err, 'error > milestone > goal.save')
+                    } else {
+                        goal.milestones.remove(milestone);
+                        goal.save(function (err) {
+                            if (err) {
+                                console.log(err, "error goal.save");
+                                res.redirect(`/goals/${req.params.id}`);
+                            } else {
+                                res.redirect(`/goals/${milestone.goalId}`);
+                            }
+                        });
+                    }
+                })
 
-
+            }
+        }
+    )
+}
