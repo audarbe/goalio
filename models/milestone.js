@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 const milestoneSchema = new Schema(
     {
+      userId: String,
       goalId: String,
       milestoneName: String,
       numberOfDays: Number,
