@@ -3,7 +3,8 @@ var Habit = require("../models/habit");
 
 module.exports = {
     create,
-    update
+    update,
+    delete: removeHabit
 }
 
 function create(req, res) {
@@ -44,10 +45,26 @@ function update(req, res) {
         habit.save(function (err) {
             if (err) {
                 console.log(err, "ERR! Daily task Saved");
-                res.redirect(`/`);
+                res.redirect(`../`);
             } else {
-                res.redirect(`/`);
+                res.redirect(`../`);
             }
         })
     })
+}
+
+function removeHabit(req, res) {
+    Habit.findByIdAndRemove(req.params.id, function(err, habit) {
+        Milestone.findById(habit.milestoneId, function(err, milestone) {
+            milestone.habits.remove(habit)
+            milestone.save(function(err) {
+                if (err) {
+                    console.log(err, "ERR! Daily task Saved");
+                    res.redirect(`../`);
+                } else {
+                    res.redirect(`../`);
+                }
+            })
+        });
+    });
 }

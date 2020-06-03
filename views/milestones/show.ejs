@@ -27,7 +27,11 @@
                         <input type="checkbox" id="<%= d.day %>" name="dailyProgress" value="<%= d.day %>" <%= d.complete ? "checked" : "" %>/>
                         <label for="<%= d.day %>"><%= d.day %></label>
                         <% }); %> 
+                        <br />
                         <button type="submit">Update Habit</button>  
+                    </form>
+                    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=DELETE" method="POST">
+                        <button type="submit">Delete Habit</button>
                     </form>
                      <br />
                  <% }); %>   
