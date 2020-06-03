@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 <section>
-  <form action="/goals" method="POST">
+  <form action='/goals' method='POST'>
     <div>
       <label>What is your goal?
         <input type="text" name="goalName" />
@@ -24,11 +24,9 @@
     <div>
       <p>Category</p>
       <% category.forEach(function(c) { %>
-      <form>
         <input type="checkbox" id="<%= c %>" name="complete" value="true" />
         <label for="<%= c %>"><%= c %></label>
-      </form>
-      <% }) %>
+      <% }); %>
     </div>
     <div>
       <input type="submit" value="Add Goal" />

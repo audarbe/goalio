@@ -37,6 +37,7 @@ function newGoal(req, res) {
 }
 
 function create(req, res) {
+  console.log('create')
   const goal = new Goal(req.body);
   //user
   req.user.goals.push(goal);

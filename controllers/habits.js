@@ -8,6 +8,7 @@ module.exports = {
 }
 
 function create(req, res) {
+    console.log('create')
     const habit = new Habit(req.body);
     Milestone.findById(req.params.id, function (err, milestone) {
         milestone.habits.push(habit);
