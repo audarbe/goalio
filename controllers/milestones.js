@@ -1,5 +1,6 @@
 var Goal = require("../models/goal");
 var Milestone = require("../models/milestone");
+var Habit = require("../models/habit");
 
 module.exports = {
     create,
@@ -75,17 +76,20 @@ function edit(req, res) {
             }
         });
     });
-}
+};
 
 function show(req, res) {
     Milestone.findById(req.params.id, function (err, milestone) {
-        Goal.findById(milestone.goalId, function (err, goal) {
-            res.render('./milestones/show', {
-                milestone,
-                goal
+        Habit.find({ milestoneId: req.params.id }, function(err, habits) {
+            Goal.findById(milestone.goalId, function (err, goal) {
+                res.render('./milestones/show', {
+                    milestone,
+                    goal,
+                    habits
+                });
             });
         });
-    });
+    })
 };
 
 function update(req, res) {

@@ -19,7 +19,19 @@
             </tr>
             <tr>
                 <td>Habits</td>
-                <td>habits here</td>
+                <td>
+                <% habits.forEach(function(h) { %>
+                     <%= h.habitName %>
+                     <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=PUT" method="POST">
+                     <% h.dailyProgress.forEach(function(d) { %>
+                        <input type="checkbox" id="<%= d.day %>" name="dailyProgress" value="<%= d.day %>" />
+                        <label for="<%= d.day %>"><%= d.day %></label>
+                        <% }); %> 
+                        <button type="submit">Update Habit</button>  
+                    </form>
+                     <br />
+                 <% }); %>   
+                 </td>
             </tr>
         </tbody>
     </table>
@@ -28,6 +40,23 @@
     </form>
     <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/edit" method="GET">
         <button type="submit">Edit Milestone Details</button>
+    </form>
+</section>
+<section id="habits-form">
+    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits" method="POST">
+        <div>
+            <label>Habit Name
+                <input type="text" name="habitName" />
+            </label>
+        </div>
+        <div>
+            <label>Total days for your new habit
+                <input type="number" name="totalDays"/>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Add Habit" />
+        </div>
     </form>
 </section>
 <%- include('../partials/footer') %>

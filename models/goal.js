@@ -26,7 +26,12 @@ const goalSchema = new Schema(
     },
     userId: String,
     categories: [{ type: Schema.Types.Mixed, ref: 'Category' }],
-    milestones: [{ type: Schema.Types.ObjectId, ref: 'Milestone', default: [], }]
+    milestones: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Milestone',
+      default: [],
+      max: 4,
+    }]
   },
   {
     timestamps: true,

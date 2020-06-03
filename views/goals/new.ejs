@@ -24,8 +24,10 @@
     <div>
       <p>Category</p>
       <% category.forEach(function(c) { %>
-        <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" />
+      <form>
+        <input type="checkbox" id="<%= c %>" name="complete" value="true" />
         <label for="<%= c %>"><%= c %></label>
+      </form>
       <% }) %>
     </div>
     <div>

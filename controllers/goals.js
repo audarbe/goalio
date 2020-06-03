@@ -37,7 +37,7 @@ function newGoal(req, res) {
 }
 
 function create(req, res) {
-const goal = new Goal(req.body);
+  const goal = new Goal(req.body);
   //user
   req.user.goals.push(goal);
   goal.userId = req.user._id;
@@ -67,19 +67,19 @@ function deleteGoal(req, res) {
       } else {
         User.findById(req.user._id, function (err, user) {
           if (err) {
-              console.log(err, 'error > user delete goal')
+            console.log(err, 'error > user delete goal')
           } else {
-              user.goals.remove(goal)
-              user.save(function (err) {
-                  if (err) {
-                      console.log(err, "error goal.save");
-                      res.redirect(`/goals/`);
-                  } else {
-                      res.redirect(`/goals/`);
-                  }
-              });
+            user.goals.remove(goal)
+            user.save(function (err) {
+              if (err) {
+                console.log(err, "error goal.save");
+                res.redirect(`/goals/`);
+              } else {
+                res.redirect(`/goals/`);
+              }
+            });
           }
-      });
+        });
       }
     }
   );
@@ -87,7 +87,7 @@ function deleteGoal(req, res) {
 
 function show(req, res) {
   Goal.findById(req.params.id, function (err, goal) {
-    Milestones.find({ goalId: req.params.id }, function(err, milestones) {
+    Milestones.find({ goalId: req.params.id }, function (err, milestones) {
       res.render("goals/show", {
         goal,
         milestones

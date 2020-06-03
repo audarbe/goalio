@@ -44,13 +44,13 @@
             <tr>
                 <td>milestones</td>
                 <td>
-                <% milestones.forEach(function(m) { %>
+                    <% milestones.forEach(function(m) { %>
                     <%= m.milestoneName %>
                     <form action="/goals/<%= goal._id %>/milestones/<%= m._id %>?_method=DELETE" method="GET">
                         <button type="submit">Milestone Details</button>
                     </form>
                     <br />
-                <% }) %>
+                    <% }) %>
                 </td>
             </tr>
         </tbody>
@@ -64,19 +64,19 @@
 </section>
 <section id="milestone-form">
     <form action="/goals/<%= goal._id %>/milestones" method="POST">
-      <div>
-        <label>Milestone Name
-          <input type="text" name="milestoneName" />
-        </label>
-      </div>
-      <div>
-        <label>How many days to complete your milestone:
-          <input type="number" id="milestone-days" name="numberOfDays" min="0" />
-        </label>
-      </div>
-      <div>
-        <input type="submit" value="Add Milestone" />
-      </div>
+        <div>
+            <label>Milestone Name
+                <input type="text" name="milestoneName" />
+            </label>
+        </div>
+        <div>
+            <label>How many days to complete your milestone:
+                <input type="number" id="milestone-days" name="numberOfDays" min="0" />
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Add Milestone" />
+        </div>
     </form>
-  </section>
+</section>
 <%- include('../partials/footer') %>
