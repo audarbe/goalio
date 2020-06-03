@@ -24,7 +24,7 @@
                      <%= h.habitName %>
                      <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=PUT" method="POST">
                      <% h.dailyProgress.forEach(function(d) { %>
-                        <input type="checkbox" id="<%= d.day %>" name="dailyProgress" value="<%= d.day %>" />
+                        <input type="checkbox" id="<%= d.day %>" name="dailyProgress" value="<%= d.day %>" <%= d.complete ? "checked" : "" %>/>
                         <label for="<%= d.day %>"><%= d.day %></label>
                         <% }); %> 
                         <button type="submit">Update Habit</button>  

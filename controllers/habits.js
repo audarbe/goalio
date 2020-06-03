@@ -21,7 +21,7 @@ function create(req, res) {
                 }
                 habit.save(function (err) {
                     if (err) {
-                        console.log(err, "ERR! Habit Create");
+                        console.log(err, "ERR! Habit Save");
                         res.redirect(`./`);
                     } else {
                         res.redirect(`./`);
@@ -34,7 +34,20 @@ function create(req, res) {
 
 function update(req, res) {
     Habit.findById(req.params.id, function(err, habit) {
-        console.log(req.body, 'req.body')
-        console.log(habit, 'habit')
+        habit.dailyProgress.forEach(function(p) {
+            if (req.body.dailyProgress.includes(p.day.toString())) {
+                p.complete = true;
+            } else {
+                p.complete = false;
+            }
+        })
+        habit.save(function (err) {
+            if (err) {
+                console.log(err, "ERR! Daily task Saved");
+                res.redirect(`/`);
+            } else {
+                res.redirect(`/`);
+            }
+        })
     })
 }
