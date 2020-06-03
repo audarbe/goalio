@@ -37,7 +37,7 @@ function create(req, res) {
 }
 
 function removeMilestone(req, res) {
-    Milestone.findOneAndDelete({ _id: req.params.id },
+    Milestone.findByIdAndRemove(req.params.id,
         function (err, milestone) {
             if (err) {
                 console.log(err, "delete milestone error");
@@ -69,16 +69,16 @@ function edit(req, res) {
                 res.redirect("milestones/show");
             } else {
                 res.render("./milestones/edit", {
-                milestone,
-                goal
+                    milestone,
+                    goal
                 });
             }
         });
     });
-  }
+}
 
 function show(req, res) {
-    Milestone.findById(req.params.id, function(err, milestone) {
+    Milestone.findById(req.params.id, function (err, milestone) {
         Goal.findById(milestone.goalId, function (err, goal) {
             res.render('./milestones/show', {
                 milestone,
@@ -90,24 +90,24 @@ function show(req, res) {
 
 function update(req, res) {
     Milestone.findOneAndUpdate(req.params.id,
-      {
-        $set: {
-          milestoneName: req.body.milestoneName,
-          numberOfDays: req.body.numberOfDays,
+        {
+            $set: {
+                milestoneName: req.body.milestoneName,
+                numberOfDays: req.body.numberOfDays,
+            },
         },
-      },
-      { new: true }
+        { new: true }
     ).exec(function (err, milestone) {
-      if (err) {
-        console.log(err);
-        res.redirect('./milestones/edit');
-      } else {
-        Goal.findById(milestone.goalId, function (err, goal) {
-            res.render(`./milestones/show`, {
-                milestone,
-                goal
+        if (err) {
+            console.log(err);
+            res.redirect('./milestones/edit');
+        } else {
+            Goal.findById(milestone.goalId, function (err, goal) {
+                res.render(`./milestones/show`, {
+                    milestone,
+                    goal
+                });
             });
-        });
-      }
+        }
     });
-  }
+}
