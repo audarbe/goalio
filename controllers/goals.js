@@ -115,6 +115,7 @@ function update(req, res) {
   Goal.findOneAndUpdate({ _id: req.params.id, },
     {
       $set: {
+        goalName: req.body.goalName,
         priority: req.body.priority,
         difficulty: req.body.difficulty,
         daysToComplete: req.body.daysToComplete,
@@ -127,9 +128,7 @@ function update(req, res) {
       console.log(err);
       res.redirect("/goals/edit");
     } else {
-      res.render("goals/show", {
-        goal,
-      });
+      res.redirect("/goals");
     }
   });
 }

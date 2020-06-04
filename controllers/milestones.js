@@ -107,10 +107,13 @@ function update(req, res) {
             res.redirect('./milestones/edit');
         } else {
             Goal.findById(milestone.goalId, function (err, goal) {
-                res.render(`./milestones/show`, {
-                    milestone,
-                    goal
-                });
+                res.redirect(`./${milestone._id}`)
+                // res.render(`./milestones/show`, {
+                //     milestone,
+                //     goal,
+                //     habits: milestone.habits,
+                //     dailyProgress: milestone.habits.dailyProgress
+                // });
             });
         }
     });
