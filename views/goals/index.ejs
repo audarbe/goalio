@@ -1,41 +1,23 @@
-<%- include('../partials/header') %>
-<section>
-  <h1>Goals Page</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Progress</th>
-        <th>Goal</th>
-        <th>Priority</th>
-        <th>Difficulty#</th>
-        <th>Days to complete</th>
-        <th>Categories</th>
-      </tr>
-    </thead>
-    </thead>
-    <tbody>
-      <% goals.forEach(function(g) { %>
-      <tr class="table-row">
-        <td><%= g.progress %></td>
-        <td><%= g.goalName %></td>
-        <td><%= g.priority %></td>
-        <td><%= g.difficulty %></td>
-        <td><%= g.daysToComplete %></td>
-        <td>
-          <% g.categories.forEach(function(c) { %>
-          <%= c %><br />
+<%- include('../partials/sidebar') %>
+<header>
+  <h1>My Goals</h1>
+</header>
+  <div class="grid-container">
+    <% goals.forEach(function(g) { %>
+      <article>
+        Progress: <td><%= g.progress %></td>
+        <p class="article-header" ><%= g.goalName %></p>
+        Priority: <%= g.priority %><br />
+        Difficulty: <%= g.difficulty %><br />
+        Days to Complete: <%= g.daysToComplete %><br />
+        <b>Categories</b><br>
+        <% g.categories.forEach(function(c) { %>
+          <%= c %> 
           <% }) %>
-        </td>
-        
-        <td>
           <form action="/goals/<%= g._id %>" method="GET">
             <button type="submit">Details</button>
           </form>
-        </td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
-  <a href="/goals/new">Add Goal</a>
-</section>
+      </article>
+    <% }); %>
+  </div>
 <%- include('../partials/footer') %>
