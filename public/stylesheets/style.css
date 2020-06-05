@@ -34,7 +34,6 @@ body {
     "aside"
     "main";
   width: 100%;
-  min-height: 100%;
 
 }
 
@@ -63,7 +62,6 @@ aside {
   align-items: center;
   background: #333333;
   color: white;
-  min-height: 75rem;
 }
 
 .logo {
@@ -85,7 +83,74 @@ h1 {
   font-weight: 400;
   font-size: 1.25em;
   color: #666666;
-  margin-bottom: 15px;;
+  margin-bottom: 15px;
+}
+
+
+/* FORM */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.form-label {
+  font-weight: 200;
+  font-size: 2em;
+  margin-top: 25px;
+}
+
+.form-container input:not([type=submit]) {
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid #DDDDDD;
+  outline: none;
+}
+
+input[type=text] {
+  width: 100%;
+}
+
+.save-goal-button {
+  background: transparent;
+  border: 2px solid #FE4365;
+}
+
+.form-categories-container {
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories-checkbox-label {
+  width: 48%;
+  height: 50px;
+  position: relative;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.categories-checkbox-label input {
+  position: absolute;
+  opacity: 0;
+}
+
+.custom-checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #DDDDDD;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-checkbox-label input:checked ~ .custom-checkbox {
+  background-color: #FE4365;
+  color: white;
 }
 
 /* GRID */
@@ -160,19 +225,6 @@ article button {
   font-size: 2.5em;
 }
 
-/********************* ICEBOX ITEM - Progress indicator
-.article-progress-container {
-  position: absolute;
-  right: 0;
-  background: #C8C8A9;
-  width: 5rem;
-  height: 5rem;
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
-  text-align: right;
-  padding: 20px;
-}
-***********************************/
-
 
 .article-footer {
   display: flex;
@@ -221,15 +273,25 @@ article button {
     margin: 25px 0;
   }
 
-  .add-new-button {
-    color: white;
+
+  .button, input[type=submit] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    font-weight: 900;
-    width: 80%;
-    text-align: center;
     padding: 20px 25px;
     margin: 10px 0;
     border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    height: 60px;
+    outline: none;
+  }
+
+  .add-new-button {
+    color: white;
+    font-weight: 900;
+    width: 80%;
     background: linear-gradient(to left bottom, #83AF9B,#C8C8A9);
   }
 

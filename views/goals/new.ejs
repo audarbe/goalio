@@ -1,36 +1,32 @@
 <%- include('../partials/sidebar') %>
-<section>
+<header>
+  <h1><i class="fas fa-plus-circle"></i>Add New Goal</h1>
+</header>
+<div class="form-container">
   <form action='/goals' method='POST'>
-    <div>
-      <label>What is your goal?
-        <input type="text" name="goalName" />
-      </label>
-    </div>
-    <div>
-      <label>Priority:
-        <input type="range" id="priority-slider" name="priority" min="1" max="3" value="2" step="1" />
-      </label>
-    </div>
-    <div>
-      <label>Difficulty:
-        <input type="range" id="difficulty-slider" name="difficulty" min="1" max="5" value="3" step="1" />
-      </label>
-    </div>
-    <div>
-      <label>How many days do you need?
-        <input type="number" name="daysToComplete" />
-      </label>
-    </div>
-    <div>
-      <p>Category</p>
+  <div>
+    <p class="form-label">What is your goal?</p>
+    <input type="text" name="goalName" />
+  </div>
+  <div>
+    <p class="form-label">How many days do you need to achieve your goal?</p>
+      <input type="number" name="daysToComplete" />
+  </div>
+  <div>
+    <p class="form-label">What type of goal is it?</p>
+    <p><i>Choose as many categories as you need</i></p>
+    <div class="form-categories-container">
       <% category.forEach(function(c) { %>
-        <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" /> 
-            <label for="<%= c %>"><%= c %></label>
+        <label class="categories-checkbox-label">
+          <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" />
+          <span class="custom-checkbox"><%= c %></span>
+        </label>
       <% }); %>
     </div>
-    <div>
-      <input type="submit" value="Add Goal" />
-    </div>
-  </form>
-</section>
+  </div>
+  <div>
+    <input type="submit" value="Save goal" class="save-goal-button" />
+  </div>
+</form>
+</div>
 <%- include('../partials/footer') %>
