@@ -1,5 +1,6 @@
 /* 
-#FE4365 dk pink 
+#e23857 dk pink
+#FE4365 md pink 
 #4A4646 lt pink
 #F9CDAD champagne
 #C8C8A9 lt green
@@ -17,13 +18,13 @@ body {
   display: grid;
   justify-items: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 80vh;
   background: linear-gradient(to left bottom, #882bd4,#5b15ab, #882bd4);
   background-attachment: fixed;
   overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
-  color: #444444
-
+  color: #444444;
+  padding-bottom: 5rem;
 }
 
 .main-wrapper {
@@ -34,6 +35,7 @@ body {
     "main";
   width: 100%;
   min-height: 100%;
+
 }
 
 footer {
@@ -61,6 +63,7 @@ aside {
   align-items: center;
   background: #333333;
   color: white;
+  min-height: 75rem;
 }
 
 .logo {
@@ -85,30 +88,43 @@ h1 {
   margin-bottom: 15px;;
 }
 
-
 /* GRID */
 
 .grid-container{ 
   display: grid;
   margin: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-  grid-auto-rows: minmax(250px, auto);
+  grid-auto-rows: minmax(300px, auto);
   grid-gap: 25px 25px;
 }
 
 article {
+  display: grid;
+  grid-template-rows: auto 1fr 5rem;
   background-color: #FE4365;
   color: white;
-  padding: 20px;
+  position: relative;
 }
 
 article button {
   background-color: transparent;
-  border: 1px solid white;
-  border-radius: 30px;
   font-family: 'Montserrat', sans-serif;
-  padding: 10px 25px;
-  color: white
+  color: #FFFFFF;
+  width: 80px;
+  height: 80px;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background-color: #4A4646;
+  box-shadow: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 1.3em;
+  padding-bottom: 15px;
+  outline: none;
 }
 
 .article-header {
@@ -116,6 +132,56 @@ article button {
   font-weight: 900;
   letter-spacing: -.5px;
   line-height: 1.9rem;
+  padding: 25px;
+
+}
+
+.article-category-container {
+  padding: 0 25px 25px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.category-tag {
+  background: #e23857;
+  margin: 0 15px 10px 0;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+
+.label-text {
+  font-size: .75em;
+}
+
+.stats-text {
+  font-weight: 400;
+  font-size: 2.5em;
+}
+
+/********************* ICEBOX ITEM - Progress indicator
+.article-progress-container {
+  position: absolute;
+  right: 0;
+  background: #C8C8A9;
+  width: 5rem;
+  height: 5rem;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  text-align: right;
+  padding: 20px;
+}
+***********************************/
+
+
+.article-footer {
+  display: flex;
+  padding: 0 0 25px 25px;
+}
+
+.article-footer-container {
+  padding-right: 15px;
+  text-align: center;
 }
 
 /************************* MEDIA QUERIES *************************/

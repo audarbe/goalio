@@ -5,19 +5,34 @@
   <div class="grid-container">
     <% goals.forEach(function(g) { %>
       <article>
-        Progress: <td><%= g.progress %></td>
-        <p class="article-header" ><%= g.goalName %></p>
-        Priority: <%= g.priority %><br />
-        Difficulty: <%= g.difficulty %><br />
-        Days to Complete: <%= g.daysToComplete %><br />
-        <b>Categories</b><br>
-        <% g.categories.forEach(function(c) { %>
-          <%= c %> 
+        <div class="article-header">
+          <p><%= g.goalName %></p>
+        </div>
+        <div class="article-category-container">
+          <% g.categories.forEach(function(c) { %>
+            <p class="category-tag label-text"><%= c %></p>
           <% }) %>
+        </div>
+        <div class="article-footer">
+          <div class="article-footer-container">
+            <p class="stats-text"><%= g.priority %><br /></p>
+            <p class="label-text">PRIORITY</p>
+          </div>
+          <div class="article-footer-container">
+            <p class="stats-text"><%= g.milestones.length %><br /></p>
+            <p class="label-text">MILESTONES</p>
+          </div>
+          <div class="article-footer-container">
+            <p class="stats-text"><%= g.daysToComplete %><br /></p>
+            <p class="label-text">DAYS</p>
+          </div>
+        </div>
+        <div class="article-next-container">
           <form action="/goals/<%= g._id %>" method="GET">
-            <button type="submit">Details</button>
+            <button type="submit"><i class="fas fa-chevron-right"></i></button>
           </form>
-      </article>
+        </div>
+        </article>
     <% }); %>
   </div>
 <%- include('../partials/footer') %>
