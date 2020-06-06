@@ -1,82 +1,99 @@
 <%- include('../partials/sidebar') %>
-<section id="goal-details">
-    <h1><%= goal.goalName %></h1>
-    <table>
-        <tbody>
-            <tr>
-                <td>Created On</td>
-                <td>
-                    <%= goal.createdAt.toDateString() %>
-                    <%= goal.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
-                </td>
-            </tr>
-            <tr>
-                <td>Last Updated</td>
-                <td>
-                    <%= goal.updatedAt.toDateString() %>
-                    <%= goal.updatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
-                </td>
-            </tr>
-            <tr>
-                <td>Progress</td>
-                <td><%= goal.progress %></td>
-            </tr>
-            <tr>
-                <td>Priority</td>
-                <td><%= goal.priority %></td>
-            </tr>
-            <tr>
-                <td>Difficulty#</td>
-                <td><%= goal.difficulty %></td>
-            </tr>
-            <tr>
-                <td>Days to complete</td>
-                <td><%= goal.daysToComplete %></td>
-            </tr>
-            <tr>
-                <td>Categories</td>
-                <td>
-                    <% goal.categories.forEach(function(c) { %>
-                    <%= c %><br />
-                    <% }) %>
-                </td>
-            </tr>
-            <tr>
-                <td>milestones</td>
-                <td>
-                    <% milestones.forEach(function(m) { %>
-                    <%= m.milestoneName %>
-                    <form action="/goals/<%= goal._id %>/milestones/<%= m._id %>?_method=DELETE" method="GET">
-                        <button type="submit">Milestone Details</button>
-                    </form>
-                    <br />
-                    <% }) %>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <form action="/goals/<%= goal._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Goal</button>
-    </form>
-    <form action="/goals/<%= goal._id %>/edit" method="GET">
-        <button type="submit">Edit Goal Details</button>
-    </form>
-</section>
-<section id="milestone-form">
-    <form action="/goals/<%= goal._id %>/milestones" method="POST">
+<h1>Goal Details</h1>
+<div class="page-header page-header-goals">
+    <div class="page-header-left">
+        <p class="article-header"><%= goal.goalName %></p>
+        <div class="article-category-container">
+            <% goal.categories.forEach(function(c) { %>
+              <p class="category-tag label-text"><%= c %></p>
+            <% }) %>
+          </div>
+          <div class="article-footer">
+            <div class="article-footer-container">
+              <p class="stats-text"><%= goal.daysToComplete %></p>
+              <p class="label-text">DAYS</p>
+            </div>
+            <div class="article-footer-container">
+              <p class="stats-text"><%= goal.milestones.length %></p>
+              <p class="label-text">MILESTONES</p>
+            </div>
+            <div class="article-footer-container">
+              <p class="stats-text">XX</p>
+              <p class="label-text">HABITS</p>
+            </div>
+          </div>
+    </div>
+    <div class="page-header-right">
         <div>
-            <label>Milestone Name
-                <input type="text" name="milestoneName" />
-            </label>
+            <p class="label-text">Created</p>
+            <p><%= goal.createdAt.toDateString() %></p>
         </div>
         <div>
-            <label>How many days to complete your milestone:
-                <input type="number" id="milestone-days" name="numberOfDays" min="0" />
-            </label>
+            <p class="label-text">Last Updated</p>
+            <p><%= goal.updatedAt.toDateString() %></p>
         </div>
         <div>
-            <input type="submit" value="Add Milestone" />
+            <form action="/goals/<%= goal._id %>/edit" method="GET">
+                <button class="header-button" type="submit">Edit</button>
+            </form>
+            <form action="/goals/<%= goal._id %>?_method=DELETE" method="POST">
+                <button class="header-button" type="submit">Delete</button>
+            </form>
         </div>
-    </form>
-</section>
+    </div>
+</div>
+<h1>Milestones</h1>
+
+<div class="grid-container">
+    <% milestones.forEach(function(m) { %>
+        <article class="article-milestone">
+            <div class="article-header">
+            <p><%= m.milestoneName %></p>
+            </div>
+            <div class=""></div>
+            <div class="article-footer">
+                <div class="article-footer-container">
+                    <p class="stats-text"><%= m.numberOfDays %><br /></p>
+                    <p class="label-text">DAYS</p>
+                </div>
+                <div class="article-footer-container">
+                    <p class="stats-text"><%= m.habits.length %><br /></p>
+                    <p class="label-text">HABITS</p>
+                </div>
+            </div>
+            <div class="article-next-container">
+                <form action="/goals/<%= goal._id %>/milestones/<%= m._id %>?_method=DELETE" method="GET">
+                    <button type="submit"><i class="fas fa-chevron-right"></i></button>
+                </form>
+            </div>
+        </article>
+    <% }); %>
+
+
+    <article class="article-add-new">
+        <div></div>
+        
+        
+        <div>
+            <form action="/goals/<%= goal._id %>/milestones" method="POST">
+                <textarea name="milestoneName" placeholder="Add New Milestone"required></textarea>
+        </div>
+
+
+        <div class="article-footer">
+            <div class="article-footer-container">
+                <input type="number" id="milestone-days" name="numberOfDays" min="0" placeholder="-" max="<%= goal.daysToComplete %>" required/>
+                <p class="label-text"># OF DAYS</p>
+            </div>
+        </div>
+
+
+        <div class="article-next-container">
+            <button type="submit"><i class="fas fa-plus"></i></button>
+        </div>
+        </form>
+    </article>
+
+
+</div>
 <%- include('../partials/footer') %>

@@ -55,6 +55,44 @@ main {
   transform: translateY(2px);
 }
 
+/* SHOW */
+.page-header {
+  display: grid;
+  grid-template-columns: auto 225px;
+  color: white;
+  min-height: 200px;
+  margin-bottom: 40px;
+}
+
+.page-header-goals {
+  background-color: #FE4365;
+}
+
+.page-header-right {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: right;
+  background-color: #444444;
+  clip-path: polygon(50px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.page-header-right > div{
+  margin: 5px 0;
+}
+
+.header-button {
+  background: rgba(0,0,0,.2);
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  height: 30px;
+  color: white;
+  width: 100px;
+  margin: 5px 0;
+}
+
 /* SIDEBAR */
 aside {
   grid-area: aside;
@@ -115,7 +153,7 @@ input[type=text] {
 
 .save-goal-button {
   background: transparent;
-  border: 2px solid #FE4365;
+  border: 1px solid #FE4365;
 }
 
 .form-categories-container {
@@ -166,13 +204,63 @@ input[type=text] {
 article {
   display: grid;
   grid-template-rows: auto 1fr 5rem;
-  background-color: #FE4365;
   color: white;
   position: relative;
 }
 
-article button {
+.article-goal {
+  background-color: #FE4365;
+}
+
+.article-milestone {
+  background-color: #83AF9B;
+}
+
+.article-add-new {
+  background-color: #333333;
+}
+
+.article-add-new textarea {
+  width: 100%;
+  height: 250px;
+  resize: none;
   background-color: transparent;
+  overflow-y: hidden;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -.5px;
+  line-height: 1.9rem;
+  padding: 25px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+/* textarea::placeholder {
+  color: rgba(255,255,255,.5);
+} */
+
+.article-add-new input {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 2.5em;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+article button {
   font-family: 'Montserrat', sans-serif;
   color: #FFFFFF;
   width: 80px;
@@ -190,6 +278,7 @@ article button {
   font-size: 1.3em;
   padding-bottom: 15px;
   outline: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .article-header {
@@ -210,7 +299,7 @@ article button {
 }
 
 .category-tag {
-  background: #e23857;
+  background: rgba(0,0,0,.2);
   margin: 0 15px 10px 0;
   padding: 5px 20px;
   border-radius: 20px;
