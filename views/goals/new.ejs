@@ -4,29 +4,29 @@
 </header>
 <div class="form-container">
   <form action='/goals' method='POST'>
-  <div>
-    <p class="form-label">What is your goal?</p>
-    <input type="text" name="goalName" required />
-  </div>
-  <div>
-    <p class="form-label">How many days do you need to achieve your goal?</p>
-      <input type="number" name="daysToComplete" required/>
-  </div>
-  <div>
-    <p class="form-label">What type of goal is it?</p>
-    <p><i>Choose as many categories as you need</i></p>
-    <div class="form-categories-container">
-      <% category.forEach(function(c) { %>
+    <div>
+      <p class="form-label">What is your goal?</p>
+      <input type="text" name="goalName" required />
+    </div>
+    <div>
+      <p class="form-label">How many days do you need to achieve your goal?</p>
+      <input type="number" name="daysToComplete" required />
+    </div>
+    <div>
+      <p class="form-label">What type of goal is it?</p>
+      <p><i>Choose as many categories as you need</i></p>
+      <div class="form-categories-container">
+        <% category.forEach(function(c) { %>
         <label class="categories-checkbox-label">
           <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" />
           <span class="custom-checkbox"><%= c %></span>
         </label>
-      <% }); %>
+        <% }); %>
+      </div>
     </div>
-  </div>
-  <div>
-    <input type="submit" value="Save goal" class="save-goal-button" />
-  </div>
-</form>
+    <div>
+      <input type="submit" value="Save goal" class="save-goal-button" />
+    </div>
+  </form>
 </div>
 <%- include('../partials/footer') %>

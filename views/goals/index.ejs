@@ -2,37 +2,37 @@
 <header>
   <h1><i class="fas fa-bullseye"></i>My Goals</h1>
 </header>
-  <div class="grid-container">
-    <% goals.forEach(function(g) { %>
-      <article class="article-goal">
-        <div class="article-header">
-          <p><%= g.goalName %></p>
-        </div>
-        <div class="article-category-container">
-          <% g.categories.forEach(function(c) { %>
-            <p class="category-tag label-text"><%= c %></p>
-          <% }) %>
-        </div>
-        <div class="article-footer">
-          <div class="article-footer-container">
-            <p class="stats-text"><%= g.daysToComplete %><br /></p>
-            <p class="label-text">DAYS</p>
-          </div>
-          <div class="article-footer-container">
-            <p class="stats-text"><%= g.milestones.length %><br /></p>
-            <p class="label-text">MILESTONES</p>
-          </div>
-          <div class="article-footer-container">
-            <p class="stats-text">XX<br /></p>
-            <p class="label-text">HABITS</p>
-          </div>
-        </div>
-        <div class="article-next-container">
-          <form action="/goals/<%= g._id %>" method="GET">
-            <button type="submit"><i class="fas fa-chevron-right"></i></button>
-          </form>
-        </div>
-        </article>
-    <% }); %>
-  </div>
+<div class="grid-container">
+  <% goals.forEach(function(g) { %>
+  <article class="article-goal">
+    <div class="article-header">
+      <p><%= g.goalName %></p>
+    </div>
+    <div class="article-category-container">
+      <% g.categories.forEach(function(c) { %>
+      <p class="category-tag label-text"><%= c %></p>
+      <% }) %>
+    </div>
+    <div class="article-footer">
+      <div class="article-footer-container">
+        <p class="stats-text"><%= g.daysToComplete %><br /></p>
+        <p class="label-text">DAYS</p>
+      </div>
+      <div class="article-footer-container">
+        <p class="stats-text"><%= g.milestones.length %><br /></p>
+        <p class="label-text">MILESTONES</p>
+      </div>
+      <div class="article-footer-container">
+        <p class="stats-text">XX<br /></p>
+        <p class="label-text">HABITS</p>
+      </div>
+    </div>
+    <div class="article-next-container">
+      <form action="/goals/<%= g._id %>" method="GET">
+        <button class="article-action-button" type="submit"><i class="fas fa-chevron-right"></i></button>
+      </form>
+    </div>
+  </article>
+  <% }); %>
+</div>
 <%- include('../partials/footer') %>

@@ -13,7 +13,7 @@ const milestoneSchema = new Schema(
       min: 0,
       max: 100
     },
-    habits: [{ 
+    habits: [{
       type: Schema.Types.ObjectId,
       ref: 'Habit'
     }]

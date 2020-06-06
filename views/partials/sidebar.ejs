@@ -12,33 +12,33 @@
 
 <body>
   <div class="main-wrapper">
-  <aside>
-    <div class="logo-container">
-    <a href="/"><img src="/images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
-    </div>
-    <% if (user) { %>
+    <aside>
+      <div class="logo-container">
+        <a href="/"><img src="/images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
+      </div>
+      <% if (user) { %>
       <div class="user-container">
         <img class="avatar" src="<%= user.avatar %>">
         <p><%= user.name %></p>
       </div>
-    <% } %>
-    <% if (user) { %>
+      <% } %>
+      <% if (user) { %>
       <a class="add-new-button button" href="/goals/new"><i class="fas fa-plus-circle"></i> ADD NEW GOAL</a>
       <nav>
         <div class="main-nav">
-            <a class="nav-item" href="/"><i class="fas fa-columns"></i> Dashboard</a>
-            <a class="nav-item" href="/goals"><i class="fas fa-bullseye"></i> My Goals</a>
-            <a class="nav-item" href="#"><i class="fas fa-tasks"></i> My Milestones</a>
-            <a class="nav-item" href="#"><i class="far fa-calendar-check"></i> My Habits</a>
-            <a class="nav-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+          <a class="nav-item" href="/"><i class="fas fa-columns"></i> Dashboard</a>
+          <a class="nav-item" href="/goals"><i class="fas fa-bullseye"></i> My Goals</a>
+          <a class="nav-item" href="#"><i class="fas fa-tasks"></i> My Milestones</a>
+          <a class="nav-item" href="#"><i class="far fa-calendar-check"></i> My Habits</a>
+          <a class="nav-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
         </div>
       </nav>
-    <% } else { %>
+      <% } else { %>
       <nav>
         <div>
-        <a class="nav-item" href="/auth/google">Login</a>
+          <a class="nav-item" href="/auth/google">Login</a>
         </div>
       </nav>
-    <% } %>
-  </aside>
-  <main>
+      <% } %>
+    </aside>
+    <main>

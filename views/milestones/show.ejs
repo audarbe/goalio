@@ -1,66 +1,85 @@
 <%- include('../partials/sidebar') %>
-<section id="milestone-details">
-    <h1><%= milestone.milestoneName %> Details</h1>
-    <table>
-        <tbody>
-            <tr>
-                <td>Last Updated</td>
-                <td>
-                    <%= milestone.updatedAt.toDateString() %>
-                    <%= milestone.updatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
-                </td>
-            </tr>
-            <tr>
-                <td>Progress</td>
-                <td><%= milestone.progress %></td>
-            <tr>
-                <td>Days to complete</td>
-                <td><%= milestone.numberOfDays %></td>
-            </tr>
-            <tr>
-                <td>Habits</td>
-                <td>
-                <% habits.forEach(function(h) { %>
-                     <%= h.habitName %>
-                     <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=PUT" method="POST">
-                     <% h.dailyProgress.forEach(function(d) { %>
-                        <input type="checkbox" id="<%= d._id %>" name="dailyProgress" value="<%= d.day %>" <%= d.complete ? "checked" : "" %>/>
-                        <label for="<%= d._id %>"><%= d.day %></label>
-                        <% }); %> 
-                        <br /><br />
-                        <button type="submit">Update Habit</button>  
-                    </form>
-                    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=DELETE" method="POST">
-                        <button type="submit">Delete Habit</button>
-                    </form>
-                     <br />
-                 <% }); %>   
-                 </td>
-            </tr>
-        </tbody>
-    </table>
-    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Milestone</button>
+<h1>Milestone Details</h1>
+<div class="page-header page-header-milestones">
+  <div class="page-header-left">
+    <p class="article-header"><%= milestone.milestoneName %></p>
+    <div class="article-category-container">
+      <p>Milestone of: <%= goal.goalName %></p>
+    </div>
+    <div class="article-footer">
+      <div class="article-footer-container">
+        <p class="stats-text"><%= milestone.numberOfDays %></p>
+        <p class="label-text">DAYS</p>
+      </div>
+      <div class="article-footer-container">
+        <p class="stats-text"><%= milestone.habits.length %></p>
+        <p class="label-text">HABITS</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-header-right">
+    <div>
+      <p class="label-text">Created</p>
+      <p><%= milestone.createdAt.toDateString() %></p>
+    </div>
+    <div>
+      <p class="label-text">Last Updated</p>
+      <p><%= milestone.updatedAt.toDateString() %></p>
+    </div>
+    <div>
+      <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/edit" method="GET">
+        <button class="header-button" type="submit">Edit</button>
+      </form>
+      <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=DELETE" method="POST">
+        <button class="header-button" type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+<h1>Habits</h1>
+<div class="grid-container">
+  <% habits.forEach(function(h) { %>
+  <article class="article-habit">
+    <div class="article-header">
+      <p><%= h.habitName %></p>
+    </div>
+    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=PUT" method="POST">
+      <div class="article-next-container">
+        <button class="article-action-button" type="submit"><i class="fas fa-check"></i></button>
+      </div>
+      <div class="grid-container-progress">
+        <% h.dailyProgress.forEach(function(d) { %>
+        <label class="progress-checkbox-label">
+          <input type="checkbox" id="<%= d._id %>" name="dailyProgress" value="<%= d.day %>" <%= d.complete ? "checked" : "" %> />
+          <span class="custom-progress-checkbox"><%= d.day %></span>
+        </label>
+        <% }); %>
+      </div>
     </form>
-    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/edit" method="GET">
-        <button type="submit">Edit Milestone Details</button>
+    <div class="article-footer">
+      <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=DELETE" method="POST">
+        <button class="header-button" type="submit">Delete Habit</button>
+      </form>
+    </div>
+
+  </article>
+  <% }); %>
+  <article class="article-add-new">
+    <div></div>
+    <div>
+      <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits" method="POST">
+        <textarea name="habitName" placeholder="Add New Habit" required></textarea>
+    </div>
+    <div class="article-footer">
+      <div class="article-footer-container">
+        <input type="number" id="milestone-days" name="totalDays" min="0" placeholder="-" max="<%= milestone.numberOfDays %>" required />
+        <p class="label-text"># OF DAYS</p>
+      </div>
+    </div>
+    <div class="article-next-container">
+      <button class="article-action-button" type="submit"><i class="fas fa-plus"></i></button>
+    </div>
     </form>
-</section>
-<section id="habits-form">
-    <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits" method="POST">
-        <div>
-            <label>Habit Name
-                <input type="text" name="habitName" />
-            </label>
-        </div>
-        <div>
-            <label>Total days for your new habit
-                <input type="number" name="totalDays"/>
-            </label>
-        </div>
-        <div>
-            <input type="submit" value="Add Habit" />
-        </div>
-    </form>
-</section>
+  </article>
+</div>
 <%- include('../partials/footer') %>
