@@ -37,7 +37,7 @@
     </div>
     <div>
       <form action="/goals/<%= goal._id %>/edit" method="GET"></form>
-        <button class="header-button" id="edit-goal-button" type="submit">Edit</button>
+      <button class="header-button" id="edit-goal-button" type="submit">Edit</button>
       </form>
       <form action="/goals/<%= goal._id %>?_method=DELETE" method="POST">
         <button class="header-button" type="submit">Delete</button>
@@ -45,16 +45,16 @@
     </div>
   </div>
 </div>
-<form action="/goals/<%= goal._id %>?_method=PUT" method="POST">
-  <div class="page-header page-header-goals" id="edit-goal-form">
+<form action="/goals/<%= goal._id %>?_method=PUT" method="POST" id="edit-goal-form">
+  <div class="page-header page-header-goals">
     <div class="page-header-left">
-      <textarea name="goalName" id="page-header-textarea" value="<%= goal.goalname %>" required><%= goal.goalName %></textarea>
+      <textarea name="goalName" id="header-textarea" value="<%= goal.goalname %>" required><%= goal.goalName %></textarea>
       <div class="article-category-container">
         <% category.forEach(function(c) { %>
-          <label class="header-categories-checkbox-label"><%= c %>
-            <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" <%= goal.categories.includes(c) ? "checked" : "" %> />
-            <span class="custom-header-checkbox"><%= c %></span>
-          </label>
+        <label class="header-categories-checkbox-label"><%= c %>
+          <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" <%= goal.categories.includes(c) ? "checked" : "" %> />
+          <span class="custom-header-checkbox"><%= c %></span>
+        </label>
         <% }) %>
       </div>
       <div class="article-footer">
@@ -123,5 +123,3 @@
   </article>
 </div>
 <%- include('../partials/footer') %>
-
-

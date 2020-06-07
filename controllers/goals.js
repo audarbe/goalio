@@ -18,14 +18,14 @@ function index(req, res) {
     res.redirect("/");
   } else {
     Goal
-    .find({ userId: req.user._id })
-    .populate('milestones')
-    .sort('-updatedAt')
-    .exec(function(err, goals) {
-      res.render("goals/index", {
-        goals
+      .find({ userId: req.user._id })
+      .populate('milestones')
+      .sort('-updatedAt')
+      .exec(function (err, goals) {
+        res.render("goals/index", {
+          goals
+        });
       });
-    });
   };
 };
 

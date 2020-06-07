@@ -1,20 +1,20 @@
 <%- include('../partials/sidebar') %>
 <h2>Edit: <%= milestone.milestoneName %></h2>
 <section>
-  <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=PUT" method="POST"">
+  <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=PUT" method="POST">
     <div>
       <label>Milestone Name
         <input type=" text" name="milestoneName" value="<%= milestone.milestoneName %>" />
-  </label>
-  </div>
-  <div>
-    <label>How many days to complete your milestone:
-      <input type="number" id="milestone-days" name="numberOfDays" min="0" value="<%= milestone.numberOfDays %>" />
-    </label>
-  </div>
-  <div>
-    <input type="submit" value="Update Milestone" />
-  </div>
+      </label>
+    </div>
+    <div>
+      <label>How many days to complete your milestone:
+        <input type="number" id="milestone-days" name="numberOfDays" min="0" value="<%= milestone.numberOfDays %>" />
+      </label>
+    </div>
+    <div>
+      <input type="submit" value="Update Milestone" />
+    </div>
   </form>
 </section>
 <%- include('../partials/footer') %>

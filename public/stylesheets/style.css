@@ -12,7 +12,6 @@
   margin: 0;
 }
 
-
 body {
   display: grid;
   justify-items: center;
@@ -36,6 +35,23 @@ body {
 
 }
 
+footer {
+  grid-area: ftr;
+  background: #C8C8A9;
+}
+
+main {
+  grid-area: main;
+  padding: 25px;
+}
+
+.fas, .far{
+  margin-right: 10px;
+  font-size: 120%;
+  transform: translateY(2px);
+}
+
+/* HEADERS */
 .wayfind {
   display: flex;
   justify-content: space-between;
@@ -47,31 +63,13 @@ body {
   color: #666666;
 }
 
-footer {
-  grid-area: ftr;
-  background: #C8C8A9;
-}
-
-
-main {
-  grid-area: main;
-  padding: 25px;
-}
-
-
-.fas, .far{
-  margin-right: 10px;
-  font-size: 120%;
-  transform: translateY(2px);
-}
-
-/* SHOW */
 .page-header {
   display: grid;
   grid-template-columns: 1fr 200px;
   color: white;
   min-height: 250px;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .page-header-goals {
@@ -145,15 +143,13 @@ h1 {
   margin-bottom: 15px;
 }
 
-
-/* FORM */
+/* FORMS */
 .form-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
-
 
 .form-label {
   font-weight: 200;
@@ -194,6 +190,7 @@ input[type=text] {
   padding: 5px 20px;
   border-radius: 20px;
   background: rgba(0,0,0,.05);
+  color: rgba(255,255,255,.3)
 }
 
 .custom-header-checkbox {
@@ -213,9 +210,6 @@ input[type=text] {
   color: white;
 }
 
-
-
-
 .categories-checkbox-label {
   width: 48%;
   height: 50px;
@@ -224,7 +218,9 @@ input[type=text] {
   margin: 5px;
 }
 
-.categories-checkbox-label input, .progress-checkbox-label input, .header-categories-checkbox-label input {
+.categories-checkbox-label input,
+.progress-checkbox-label input,
+.header-categories-checkbox-label input {
   position: absolute;
   opacity: 0;
 }
@@ -245,61 +241,11 @@ input[type=text] {
   color: white;
 }
 
-/* PROGRESS GRID */
-.grid-container-progress { 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-.progress-checkbox-label {
-    width: 60px;
-    height: 60px;
-    position: relative;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.progress-checkbox-label input:checked ~ .custom-progress-checkbox {
-    background-color: rgb(255, 106, 0);
-    color: white;
-  }
-
-/* GRID */
-.grid-container{ 
-  display: grid;
-  margin: 0 auto;
-  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-  grid-auto-rows: minmax(300px, auto);
-  grid-gap: 25px 25px;
-}
-
-article {
-  display: grid;
-  grid-template-rows: auto 1fr 5rem;
-  color: white;
-  position: relative;
-}
-
-.article-goal {
-  background-color: #FE4365;
-}
-
-.article-milestone {
-  background-color: #83AF9B;
-}
-
-.article-habit {
-  background-color: #4892BB;
-}
-
-.article-add-new {
-  background-color: #DDDDDD;
-  border: 1px dotted #888888;
-  color: #888888;
-}
-
 #edit-goal-form {
+  display: none;
+}
+
+#edit-milestone-form {
   display: none;
 }
 
@@ -326,7 +272,8 @@ textarea {
   color: #333333;
 }
 
-#edit-goal-form input[type=number] {
+#edit-goal-form input[type=number],
+#edit-milestone-form input[type=number] {
   text-align: center;
   height: 50px;
   width: 100px;
@@ -368,6 +315,60 @@ input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* GRID */
+.grid-container-progress { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+.progress-checkbox-label {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.progress-checkbox-label input:checked ~ .custom-progress-checkbox {
+    background-color: rgb(255, 106, 0);
+    color: white;
+  }
+
+.grid-container{ 
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+  grid-auto-rows: minmax(300px, auto);
+  grid-gap: 25px 25px;
+}
+
+/* ARTICLES */
+article {
+  display: grid;
+  grid-template-rows: auto 1fr 5rem;
+  color: white;
+  position: relative;
+}
+
+.article-goal {
+  background-color: #FE4365;
+}
+
+.article-milestone {
+  background-color: #83AF9B;
+}
+
+.article-habit {
+  background-color: #4892BB;
+}
+
+.article-add-new {
+  background-color: #DDDDDD;
+  border: 1px dotted #888888;
+  color: #888888;
 }
 
 .article-action-button {
@@ -437,8 +438,6 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 /************************* MEDIA QUERIES *************************/
-
-
 @media (min-width: 768px) { 
   body {
     padding: 5rem;
