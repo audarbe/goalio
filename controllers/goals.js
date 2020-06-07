@@ -19,7 +19,7 @@ function index(req, res) {
   } else {
     Goal
       .find({ userId: req.user._id })
-      .populate('milestones')
+      .populate('milestone')
       .sort('-updatedAt')
       .exec(function (err, goals) {
         res.render("goals/index", {

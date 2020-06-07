@@ -16,7 +16,7 @@
   <div class="main-wrapper">
     <aside>
       <div class="logo-container">
-        <a href="/"><img src="/images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
+        <a href="/"><img src="images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
       </div>
       <div class="user-container">
         <img class="avatar" src="<%= user.avatar %>">
@@ -27,27 +27,32 @@
         <div class="main-nav">
           <a class="nav-item" href="/"><i class="fas fa-columns"></i> Dashboard</a>
           <a class="nav-item" href="/goals"><i class="fas fa-bullseye"></i> My Goals</a>
-          <a class="nav-item" href="#"><i class="fas fa-tasks"></i> My Milestones</a>
+          <a class="nav-item" href="/milestones"><i class="fas fa-tasks"></i> My Milestones</a>
           <a class="nav-item" href="#"><i class="far fa-calendar-check"></i> My Habits</a>
           <a class="nav-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
         </div>
       </nav>
     </aside>
     <main>
-      <section>
-        <h1>user page</h1>
-        <a href="/goals">View Goals</a>
-        <a href="/goals/new">Add Goal</a>
-      </section>
+      <div class="welcome-page">
+        <div>
+          <p class="intro-title">Welcome to Goalio! Your super duper goal tracker.</p>
+          <p class="intro-copy">Goalio is a goal setting app that helps you create and manage your goals so you can be successful sooner. It has an intuitive process that makes the setting goals, milestones and habits simple and easy. It’s so much fun, you’ll wonder why you didn’t start sooner.</p>
+          <div class="welcome-buttons-row">
+            <a class="welcome-button" href="/goals">View Your Goals</a>
+            <a class="welcome-button" href="/goals/new">Add a New Goal</a>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
   <% } else { %>
-<div class="login-container">
-  <img src="images/goalio_logo_outline.svg" alt=GOALIO!">
-  <p>Your super duper goal tracker!</p>
-  <a class="login-button" href="/auth/google">LOGIN</a>
-  <% } %>
-</div>
+  <div class="login-container">
+    <img src="images/goalio_logo_outline.svg" alt=GOALIO!">
+    <p>Your super duper goal tracker!</p>
+    <a class="login-button" href="/auth/google">LOGIN</a>
+    <% } %>
+  </div>
 </body>
 
 </html>

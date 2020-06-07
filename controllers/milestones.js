@@ -3,12 +3,29 @@ var Milestone = require("../models/milestone");
 var Habit = require("../models/habit");
 
 module.exports = {
+  index,
   create,
   delete: removeMilestone,
   show,
   edit,
   update
 }
+
+function index(req, res) {
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    Milestone
+      .find({ userId: req.user._id })
+      .populate('habits')
+      .sort('-updatedAt')
+      .exec(function (err, milestones) {
+          res.render("milestones/index", {
+            milestones
+          })
+      });
+  };
+};
 
 function create(req, res) {
   const milestone = new Milestone(req.body);
