@@ -7,6 +7,7 @@ module.exports = {
   delete: removeHabit
 }
 
+
 function create(req, res) {
   console.log('create')
   const habit = new Habit(req.body);

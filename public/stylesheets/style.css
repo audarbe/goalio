@@ -35,11 +35,6 @@ body {
 
 }
 
-footer {
-  grid-area: ftr;
-  background: #C8C8A9;
-}
-
 main {
   grid-area: main;
   padding: 25px;
@@ -130,12 +125,12 @@ main {
 
 .wayfind a {
   text-decoration: none;
-  color: #666666;
+  color: #FFFFFF;
 }
 
 .page-header {
   display: grid;
-  grid-template-columns: 1fr 200px;
+  grid-template-rows: 1fr 60px;
   color: white;
   min-height: 250px;
   margin-bottom: 40px;
@@ -151,23 +146,27 @@ main {
 }
 
 .page-header-left {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .page-header-right {
-  padding: 20px;
-  min-width: 200px;
+  font-size: .8em;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   background-color: #444444;
 }
 
 .page-header-right > div{
   margin: 5px 0;
+}
+
+.header-button-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .header-button {
@@ -177,26 +176,39 @@ main {
   border-radius: 50px;
   height: 30px;
   color: white;
-  width: 120px;
-  margin-top: 10px;
+  width: 75px;
+  margin: 0 5px 5px 0;
   font-family: 'Montserrat', sans-serif;
 }
+
+
 
 /* SIDEBAR */
 aside {
   grid-area: aside;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: #333333;
   color: white;
 }
 
+aside a {
+  color: white;
+}
+
+
+.nav-text {
+  display: none;
+}
+
 .logo {
   height: 60px;
-  margin-top: 25px;
+  margin: 10px;
 }
 
 .user-container {
+  display: none;
   text-align: center;
 }
 
@@ -209,7 +221,7 @@ aside {
 h1 {
   font-weight: 400;
   font-size: 1.25em;
-  color: #666666;
+  color: #FFFFFF;
   margin-bottom: 15px;
 }
 
@@ -531,17 +543,60 @@ article {
     background-color: rgba(255,255,255,.9);
   }
 
+  .page-header {
+    display: grid;
+    grid-template-rows: none;
+    grid-template-columns: 1fr 200px;
+    color: white;
+    min-height: 250px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .page-header-right {
+    padding: 20px;
+    min-width: 200px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-button-container {
+    flex-direction: column;
+  }
+
+  .header-button {
+    width: 120px;
+    margin: 10px 0 0 0;
+  }
+
   /* SIDEBAR 768*/
   aside {
     flex-direction: column;
     align-items: center;
     border-radius: 20px 0 0 20px;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    margin: 25px 0 0 0;
+  }
+
+  .nav-text {
+    display: inline;
+  }
+
+  .user-container {
+    display: block;
+    text-align: center;
+  }
+
+  h1, .wayfind a {
+    color: #666666;
   }
 
   .user-container {
     margin: 25px 0;
   }
-
 
   .button, input[type=submit] {
     display: flex;
@@ -568,6 +623,7 @@ article {
     background: linear-gradient(to left bottom,#C8C8A9, #83AF9B);
   }
 
+  
   nav {
     width: 80%
   }

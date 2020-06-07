@@ -7,7 +7,6 @@ module.exports = {
   create,
   delete: removeMilestone,
   show,
-  edit,
   update
 }
 
@@ -79,21 +78,6 @@ function removeMilestone(req, res) {
     }
   )
 }
-
-function edit(req, res) {
-  Milestone.findById(req.params.id, function (err, milestone) {
-    Goal.findById(milestone.goalId, function (err, goal) {
-      if (milestone.goalId !== goal._id.toString()) {
-        res.redirect("milestones/show");
-      } else {
-        res.render("./milestones/edit", {
-          milestone,
-          goal
-        });
-      }
-    });
-  });
-};
 
 function show(req, res) {
   Milestone.findById(req.params.id, function (err, milestone) {

@@ -9,7 +9,6 @@ module.exports = {
   create,
   delete: deleteGoal,
   show,
-  edit,
   update,
 };
 
@@ -106,20 +105,6 @@ function show(req, res) {
         category
       });
     });
-}
-
-function edit(req, res) {
-  let category = Category.schema.path('category').enumValues;
-  Goal.findById(req.params.id, function (err, goal) {
-    if (goal.userId !== req.user._id.toString()) {
-      res.redirect("/goals");
-    } else {
-      res.render("goals/edit", {
-        goal,
-        category
-      });
-    }
-  });
 }
 
 function update(req, res) {

@@ -35,7 +35,7 @@
       <p class="label-text">Last Updated</p>
       <p><%= goal.updatedAt.toDateString() %></p>
     </div>
-    <div>
+    <div class="header-button-container">
       <form action="/goals/<%= goal._id %>/edit" method="GET"></form>
       <button class="header-button" id="edit-goal-button" type="submit">Edit</button>
       </form>

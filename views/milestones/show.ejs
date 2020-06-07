@@ -29,7 +29,7 @@
       <p class="label-text">Last Updated</p>
       <p><%= milestone.updatedAt.toDateString() %></p>
     </div>
-    <div>
+    <div class="header-button-container">
       <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/edit" method="GET"></form>
       <button class="header-button" type="submit" id="edit-milestone-button">Edit</button>
       </form>
@@ -87,7 +87,7 @@
     </form>
     <div class="article-footer">
       <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>/habits/<%= h._id %>?_method=DELETE" method="POST">
-        <button class="header-button" type="submit">Delete Habit</button>
+        <button class="header-button" type="submit">Delete</button>
       </form>
     </div>
 
