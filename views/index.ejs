@@ -1,14 +1,53 @@
-<%- include('partials/sidebar') %>
-<section>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/2a9f10f5de.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script defer src="/javascripts/main.js"></script>
+  <title>Goalio</title>
+</head>
+
+<body>
   <% if (user) { %>
-  <h1>user page</h1>
-  <a href="/goals">View Goals</a>
-  <a href="/goals/new">Add Goal</a>
+  <div class="main-wrapper">
+    <aside>
+      <div class="logo-container">
+        <a href="/"><img src="/images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
+      </div>
+      <div class="user-container">
+        <img class="avatar" src="<%= user.avatar %>">
+        <p><%= user.name %></p>
+      </div>
+      <a class="add-new-button button" href="/goals/new"><i class="fas fa-plus-circle"></i> ADD NEW GOAL</a>
+      <nav>
+        <div class="main-nav">
+          <a class="nav-item" href="/"><i class="fas fa-columns"></i> Dashboard</a>
+          <a class="nav-item" href="/goals"><i class="fas fa-bullseye"></i> My Goals</a>
+          <a class="nav-item" href="#"><i class="fas fa-tasks"></i> My Milestones</a>
+          <a class="nav-item" href="#"><i class="far fa-calendar-check"></i> My Habits</a>
+          <a class="nav-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </nav>
+    </aside>
+    <main>
+      <section>
+        <h1>user page</h1>
+        <a href="/goals">View Goals</a>
+        <a href="/goals/new">Add Goal</a>
+      </section>
+    </main>
+  </div>
   <% } else { %>
-  <h1>homepage</h1>
-  <p>
-    Logged out
-  </p>
+<div class="login-container">
+  <img src="images/goalio_logo_outline.svg" alt=GOALIO!">
+  <p>Your super duper goal tracker!</p>
+  <a class="login-button" href="/auth/google">LOGIN</a>
   <% } %>
-</section>
-<%- include('partials/footer') %>
+</div>
+</body>
+
+</html>
