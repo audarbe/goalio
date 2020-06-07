@@ -94,7 +94,7 @@ function show(req, res) {
 };
 
 function update(req, res) {
-  Milestone.findOneAndUpdate(req.params.id,
+  Milestone.findOneAndUpdate({ _id: req.params.id },
     {
       $set: {
         milestoneName: req.body.milestoneName,

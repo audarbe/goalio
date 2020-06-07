@@ -108,7 +108,7 @@ function show(req, res) {
 }
 
 function update(req, res) {
-  Goal.findOneAndUpdate({ _id: req.params.id, },
+  Goal.findOneAndUpdate({ _id: req.params.id },
     {
       $set: {
         goalName: req.body.goalName,
