@@ -17,13 +17,17 @@ function index(req, res) {
   if (!req.user) {
     res.redirect("/");
   } else {
-    Goal.find({ userId: req.user._id }, function (err, goals) {
+    Goal
+    .find({ userId: req.user._id })
+    .populate('milestones')
+    .sort('-updatedAt')
+    .exec(function(err, goals) {
       res.render("goals/index", {
-        goals,
+        goals
       });
     });
   };
-}
+};
 
 function newGoal(req, res) {
   let category = Category.schema.path('category').enumValues;
@@ -87,14 +91,21 @@ function deleteGoal(req, res) {
 }
 
 function show(req, res) {
-  Goal.findById(req.params.id, function (err, goal) {
-    Milestones.find({ goalId: req.params.id }, function (err, milestones) {
+  let category = Category.schema.path('category').enumValues;
+  Goal
+    .findById(req.params.id)
+    .populate('milestones')
+    .sort('-updatedAt')
+    .exec(function (err, goal) {
+      const totalHabits = goal.milestones.reduce(function (acc, h) {
+        return acc + h.habits.length;
+      }, 0)
       res.render("goals/show", {
         goal,
-        milestones
+        totalHabits,
+        category
       });
-    })
-  });
+    });
 }
 
 function edit(req, res) {
@@ -128,7 +139,7 @@ function update(req, res) {
       console.log(err);
       res.redirect("/goals/edit");
     } else {
-      res.redirect("/goals");
+      res.redirect(`/goals/${goal._id}`);
     }
   });
 }

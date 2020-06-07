@@ -1,6 +1,9 @@
 <%- include('../partials/sidebar') %>
-<h1>Goal Details</h1>
-<div class="page-header page-header-goals">
+<div class="wayfind">
+  <h1>Goal Details</h1>
+  <a href="/goals" class="label-text"><i class="fas fa-angle-left"></i>Back</a>
+</div>
+<div class="page-header page-header-goals" id="goal-details-header">
   <div class="page-header-left">
     <p class="article-header"><%= goal.goalName %></p>
     <div class="article-category-container">
@@ -18,7 +21,7 @@
         <p class="label-text">MILESTONES</p>
       </div>
       <div class="article-footer-container">
-        <p class="stats-text">XX</p>
+        <p class="stats-text"><%= totalHabits %></p>
         <p class="label-text">HABITS</p>
       </div>
     </div>
@@ -33,8 +36,8 @@
       <p><%= goal.updatedAt.toDateString() %></p>
     </div>
     <div>
-      <form action="/goals/<%= goal._id %>/edit" method="GET">
-        <button class="header-button" type="submit">Edit</button>
+      <form action="/goals/<%= goal._id %>/edit" method="GET"></form>
+        <button class="header-button" id="edit-goal-button" type="submit">Edit</button>
       </form>
       <form action="/goals/<%= goal._id %>?_method=DELETE" method="POST">
         <button class="header-button" type="submit">Delete</button>
@@ -42,9 +45,43 @@
     </div>
   </div>
 </div>
+<form action="/goals/<%= goal._id %>?_method=PUT" method="POST">
+  <div class="page-header page-header-goals" id="edit-goal-form">
+    <div class="page-header-left">
+      <textarea name="goalName" id="page-header-textarea" value="<%= goal.goalname %>" required><%= goal.goalName %></textarea>
+      <div class="article-category-container">
+        <% category.forEach(function(c) { %>
+          <label class="header-categories-checkbox-label"><%= c %>
+            <input type="checkbox" id="<%= c %>" name="categories" value="<%= c %>" <%= goal.categories.includes(c) ? "checked" : "" %> />
+            <span class="custom-header-checkbox"><%= c %></span>
+          </label>
+        <% }) %>
+      </div>
+      <div class="article-footer">
+        <div class="article-footer-container">
+          <input type="number" name="daysToComplete" value="<%= goal.daysToComplete %>" placeholder="<%= goal.daysToComplete %>" required />
+          <p class="label-text"># OF DAYS</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-header-right">
+      <div>
+        <p class="label-text">Created</p>
+        <p><%= goal.createdAt.toDateString() %></p>
+      </div>
+      <div>
+        <p class="label-text">Last Updated</p>
+        <p><%= goal.updatedAt.toDateString() %></p>
+      </div>
+      <div>
+        <input class="header-button" type="submit" value="Update" />
+      </div>
+    </div>
+  </div>
+</form>
 <h1>Milestones</h1>
 <div class="grid-container">
-  <% milestones.forEach(function(m) { %>
+  <% goal.milestones.forEach(function(m) { %>
   <article class="article-milestone">
     <div class="article-header">
       <p><%= m.milestoneName %></p>
@@ -86,3 +123,5 @@
   </article>
 </div>
 <%- include('../partials/footer') %>
+
+

@@ -1,5 +1,8 @@
 <%- include('../partials/sidebar') %>
-<h1>Milestone Details</h1>
+<div class="wayfind">
+  <h1>Milestone Details</h1>
+  <a href="/goals/<%= goal._id %>" class="label-text"><i class="fas fa-angle-left"></i>Back</a>
+</div>
 <div class="page-header page-header-milestones">
   <div class="page-header-left">
     <p class="article-header"><%= milestone.milestoneName %></p>

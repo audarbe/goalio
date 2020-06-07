@@ -2,11 +2,10 @@
 #e23857 dk pink
 #FE4365 md pink 
 #4A4646 lt pink
-#F9CDAD champagne
+#4892BB champagne
 #C8C8A9 lt green
 #83AF9B dk green
 */
-
 
 * {
   box-sizing: border-box;
@@ -37,6 +36,17 @@ body {
 
 }
 
+.wayfind {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.wayfind a {
+  text-decoration: none;
+  color: #666666;
+}
+
 footer {
   grid-area: ftr;
   background: #C8C8A9;
@@ -58,9 +68,9 @@ main {
 /* SHOW */
 .page-header {
   display: grid;
-  grid-template-columns: auto 225px;
+  grid-template-columns: 1fr 200px;
   color: white;
-  min-height: 200px;
+  min-height: 250px;
   margin-bottom: 40px;
 }
 
@@ -72,14 +82,20 @@ main {
   background-color: #83AF9B;
 }
 
-.page-header-right {
-  padding: 20px;
+.page-header-left {
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  text-align: right;
+  justify-content: space-between;
+}
+
+.page-header-right {
+  padding: 20px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #444444;
-  clip-path: polygon(50px 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .page-header-right > div{
@@ -167,6 +183,39 @@ input[type=text] {
   flex-wrap: wrap;
 }
 
+.header-categories-checkbox-label {
+  font-size: .75em;
+  position: relative;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px 10px 0;
+  padding: 5px 20px;
+  border-radius: 20px;
+  background: rgba(0,0,0,.05);
+}
+
+.custom-header-checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.header-categories-checkbox-label input:checked ~ .custom-header-checkbox {
+  background: rgba(0,0,0,.15);
+  color: white;
+}
+
+
+
+
 .categories-checkbox-label {
   width: 48%;
   height: 50px;
@@ -175,7 +224,7 @@ input[type=text] {
   margin: 5px;
 }
 
-.categories-checkbox-label input, .progress-checkbox-label input {
+.categories-checkbox-label input, .progress-checkbox-label input, .header-categories-checkbox-label input {
   position: absolute;
   opacity: 0;
 }
@@ -241,7 +290,7 @@ article {
 }
 
 .article-habit {
-  background-color: #F9CDAD;
+  background-color: #4892BB;
 }
 
 .article-add-new {
@@ -250,10 +299,12 @@ article {
   color: #888888;
 }
 
+#edit-goal-form {
+  display: none;
+}
 
-.article-add-new textarea {
+textarea {
   width: 100%;
-  height: 250px;
   resize: none;
   background-color: transparent;
   overflow-y: hidden;
@@ -263,9 +314,29 @@ article {
   line-height: 1.9rem;
   padding: 25px;
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
   outline: none;
   border: none;
+}
+
+.page-header textarea {
+  color: rgba(255,255,255,.8);
+}
+
+.article-add-new textarea {
+  color: #333333;
+}
+
+#edit-goal-form input[type=number] {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 2.5em;
+  color: rgba(255,255,255,.8);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .article-add-new input {
@@ -332,6 +403,7 @@ input[type=number]::-webkit-inner-spin-button {
 .article-category-container {
   padding: 0 25px 25px 25px;
   display: flex;
+  flex-grow: 2;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
