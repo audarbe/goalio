@@ -26,6 +26,7 @@ The user will be able to set goals for themselves and within those goals, set mi
 - [x] Responsive
 - [ ] Refactor Code
 - [ ] Create a User Dashboard
+- [ ] User experience less "linear"
 - [ ] Add limits to milestones/habits so they do not exceed Goal
 - [ ] Sorting Features
 - [ ] More information and instructions on index

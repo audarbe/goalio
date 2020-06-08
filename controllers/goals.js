@@ -1,5 +1,4 @@
 var Goal = require("../models/goal");
-var Milestones = require("../models/milestone");
 var Category = require("../models/category");
 var User = require("../models/user");
 
@@ -30,63 +29,36 @@ function index(req, res) {
 
 function newGoal(req, res) {
   let category = Category.schema.path('category').enumValues;
-  if (!req.user) {
-    res.redirect("../index");
-  } else {
-    res.render("goals/new", {
-      category
-    });
-  };
-}
+  if (!req.user) return res.redirect("../index");
+  res.render("goals/new", {
+    category
+  });
+};
 
 function create(req, res) {
   console.log('create')
   const goal = new Goal(req.body);
-  //user
   req.user.goals.push(goal);
   goal.userId = req.user._id;
   req.user.save(function (err) {
-    if (err) {
-      console.log(err, "rep.user.save");
-      res.redirect("/goals/new");
-    } else {
-      //goal
-      goal.save(function (err) {
-        if (err) {
-          console.log(err, "error goal.save");
-          return res.redirect("/goals/new");
-        } else {
-          res.redirect("/goals");
-        }
-      });
-    }
+    goal.save(function (err) {
+      if (err) return res.redirect("/goals/new");
+      res.redirect("/goals");
+    });
   });
 }
 
 function deleteGoal(req, res) {
   Goal.findOneAndDelete({ _id: req.params.id, },
     function (err, goal) {
-      if (err) {
-        console.log(err, "delete error");
-      } else {
-        User.findById(req.user._id, function (err, user) {
-          if (err) {
-            console.log(err, 'error > user delete goal')
-          } else {
-            user.goals.remove(goal)
-            user.save(function (err) {
-              if (err) {
-                console.log(err, "error goal.save");
-                res.redirect(`/goals/`);
-              } else {
-                res.redirect(`/goals/`);
-              }
-            });
-          }
+      User.findById(req.user._id, function (err, user) {
+        user.goals.remove(goal)
+        user.save(function (err) {
+          if (err) return res.redirect(`/goals/`);
+          res.redirect(`/goals/`);
         });
-      }
-    }
-  );
+      });
+    });
 }
 
 function show(req, res) {
@@ -120,11 +92,7 @@ function update(req, res) {
     },
     { new: true }
   ).exec(function (err, goal) {
-    if (err) {
-      console.log(err);
-      res.redirect("/goals/edit");
-    } else {
+    if (err) return res.redirect("/goals/edit");
       res.redirect(`/goals/${goal._id}`);
-    }
   });
 }

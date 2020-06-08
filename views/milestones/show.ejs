@@ -39,8 +39,6 @@
     </div>
   </div>
 </div>
-
-
 <form action="/goals/<%= goal._id %>/milestones/<%= milestone._id %>?_method=PUT" method="POST" id="edit-milestone-form">
   <div class="page-header page-header-milestones">
     <div class="page-header-left">
@@ -67,8 +65,6 @@
     </div>
   </div>
 </form>
-
-
 <h1>Habits</h1>
 <div class="grid-container">
   <% habits.forEach(function(h) { %>
@@ -94,7 +90,6 @@
         <button class="header-button" type="submit">Delete</button>
       </form>
     </div>
-
   </article>
   <% }); %>
   <article class="article-add-new">

@@ -19,9 +19,9 @@ function index(req, res) {
       .populate('habits')
       .sort('-updatedAt')
       .exec(function (err, milestones) {
-          res.render("milestones/index", {
-            milestones
-          })
+        res.render("milestones/index", {
+          milestones
+        })
       });
   };
 };
@@ -31,53 +31,27 @@ function create(req, res) {
   milestone.userId = req.user._id;
   milestone.goalId = req.params.id;
   milestone.save(function (err) {
-    if (err) {
-      console.log(err, "error goal.save");
-    } else {
-      Goal.findById(req.params.id, function (err, goal) {
-        if (err) {
-          console.log(err, 'error > milestone > goal.save')
-        } else {
-          goal.milestones.push(milestone);
-          goal.save(function (err) {
-            if (err) {
-              console.log(err, "error goal.save");
-              res.redirect(`/goals/${req.params.id}`);
-            } else {
-              res.redirect(`/goals/${req.params.id}`);
-            }
-          });
-        }
+    Goal.findById(req.params.id, function (err, goal) {
+      goal.milestones.push(milestone);
+      goal.save(function (err) {
+        if (err) return res.redirect(`/goals/${req.params.id}`);
+        res.redirect(`/goals/${req.params.id}`);
       });
-    };
+    });
   });
-}
+};
 
 function removeMilestone(req, res) {
-  Milestone.findByIdAndRemove(req.params.id,
-    function (err, milestone) {
-      if (err) {
-        console.log(err, "delete milestone error");
-      } else {
-        Goal.findById(milestone.goalId, function (err, goal) {
-          if (err) {
-            console.log(err, 'error > milestone > goal.save')
-          } else {
-            goal.milestones.remove(milestone);
-            goal.save(function (err) {
-              if (err) {
-                console.log(err, "error goal.save");
-                res.redirect(`/goals/${req.params.id}`);
-              } else {
-                res.redirect(`/goals/${milestone.goalId}`);
-              }
-            });
-          }
-        })
-      }
-    }
-  )
-}
+  Milestone.findByIdAndRemove(req.params.id, function (err, milestone) {
+    Goal.findById(milestone.goalId, function (err, goal) {
+      goal.milestones.remove(milestone);
+      goal.save(function (err) {
+        if (err) return res.redirect(`/goals/${req.params.id}`);
+        res.redirect(`/goals/${milestone.goalId}`);
+      });
+    });
+  });
+};
 
 function show(req, res) {
   Milestone.findById(req.params.id, function (err, milestone) {
@@ -103,13 +77,7 @@ function update(req, res) {
     },
     { new: true }
   ).exec(function (err, milestone) {
-    if (err) {
-      console.log(err);
-      res.redirect('./milestones/edit');
-    } else {
-      Goal.findById(milestone.goalId, function (err, goal) {
-        res.redirect(`./${milestone._id}`)
-      });
-    }
+    if (err) return res.redirect('./milestones/edit');
+      res.redirect(`./${milestone._id}`)
   });
 }

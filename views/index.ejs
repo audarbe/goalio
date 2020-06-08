@@ -19,14 +19,17 @@
         <a href="/"><img src="images/goalio_logo.svg" alt="GOAL.IO - Goal & Habit Tracking" class="logo"></a>
       </div>
       <div class="user-container">
-        <img class="avatar" src="<%= user.avatar %>">
+        <% if (user.avatar) { %>
+          <img class="avatar" src="<%= user.avatar %>">
+        <% } else {%>
+          <img class="avatar" src="/images/placeholder.svg">          
+        <% };%>
         <p><%= user.name %></p>
       </div>
       <a class="add-new-button button" href="/goals/new"><i class="fas fa-plus-circle"></i> ADD NEW GOAL</a>
       <nav>
         <div class="main-nav">
           <a class="nav-item" href="/goals"><i class="fas fa-bullseye"></i> <span class="nav-text">My Goals</span></a>
-          <a class="nav-item" href="/milestones"><i class="fas fa-tasks"></i> <span class="nav-text">My Milestones</span></a>
           <a class="nav-item" href="/logout"><i class="fas fa-sign-out-alt"></i> <span class="nav-text">Log Out</span></a>
         </div>
       </nav>
@@ -53,6 +56,9 @@
     <p>Your super duper goal tracker!</p>
     <a class="login-button" href="/auth/google">LOGIN</a>
     <% } %>
+  </div>
+  <div class="git-link">
+    <a href="https://github.com/audarbe/goalio" target="_blank" title="GitHub Repo"<i class="fab fa-github"></i></a>
   </div>
 </body>
 

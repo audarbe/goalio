@@ -1,7 +1,7 @@
 /* 
 #e23857 dk pink
 #FE4365 md pink 
-#4A4646 lt pink
+#4A4646 gray
 #4892BB champagne
 #C8C8A9 lt green
 #83AF9B dk green
@@ -23,6 +23,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: #444444;
   padding-bottom: 5rem;
+  position: relative;
 }
 
 .main-wrapper {
@@ -38,6 +39,19 @@ body {
 main {
   grid-area: main;
   padding: 25px;
+}
+
+.git-link {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  font-size: 1em;
+}
+
+.git-link a {
+  color: white;
+  text-decoration: none;
 }
 
 .fas, .far{
@@ -214,7 +228,9 @@ aside a {
 }
 
 .avatar {
+  outline: none;
   width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   border: 4px solid #FE4365;
 }
@@ -522,7 +538,7 @@ article {
   text-align: center;
 }
 
-/************************* MEDIA QUERIES *************************/
+/************************* 768 *************************/
 @media (min-width: 768px) { 
   .mob {
     display: none;
@@ -576,7 +592,6 @@ article {
     margin: 10px 0 0 0;
   }
 
-  /* SIDEBAR 768*/
   aside {
     flex-direction: column;
     align-items: center;
@@ -678,10 +693,4 @@ article {
   .categories-checkbox-label {
     width: 48%;
   }
-
-
-}
-
-@media (min-width: 1280px) { 
-  
 }
